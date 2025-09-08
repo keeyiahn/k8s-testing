@@ -1,0 +1,5 @@
+spec:
+  containers:
+    - name: hello-world
+      image: busybox
+      command: ["echo", "Hello World"]
