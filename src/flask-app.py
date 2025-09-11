@@ -17,7 +17,23 @@ app = Flask(__name__, template_folder="../templates")
 def home():
     return render_template("index.html")
 
+@app.route("/users")
+def get_users():
+    conn, cur = connection()
+    cur.execute("SELECT id, name, age FROM users;")
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
 
+    users = []
+    for row in rows:
+        users.append({
+            "id": row[0],
+            "name": row[1],
+            "age": row[2]
+        })
+    
+    return jsonify(users), 200
 
 @app.route("/post", methods=["POST"])
 def add_to_db():
@@ -29,7 +45,7 @@ def add_to_db():
     age = data.get("age")
 
     conn, cursor = connection()
-    cursor.execute("INSERT INTO users (name, age) VALUES (%s, %s)", (name, age))
+    cursor.execute("INSERT INTO users (name, age) VALUES (%s, %s);", (name, age))
     conn.commit()
     cursor.close()
     conn.close()
