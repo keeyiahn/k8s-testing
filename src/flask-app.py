@@ -2,10 +2,10 @@ from flask import Flask, render_template, jsonify, request
 import psycopg2
 def connection():
     conn = psycopg2.connect(
-        host="localhost",
+        host="postgres-service",
         database="flaskdb",
         user="flaskuser",
-        password="flaskpassword",
+        password="flaskpass",
         port=5432
     )
     cursor = conn.cursor()
