@@ -20,9 +20,11 @@ kubectl apply -f manifests/postgres-deployment.yaml
 kubectl apply -f manifests/postgres-service.yaml
 ```
 Default credentials:
+```
   POSTGRES_USER: flaskuser
   POSTGRES_PASSWORD: flaskpass
   POSTGRES_DB: flaskdb
+```
 (can be changed in postgres-secret.yaml, remember to update flask-app.py credentials as well)
 
 Enter PostgreSQL server to initialise users table
