@@ -1,4 +1,4 @@
-# Getting Started
+# Deployment of Flask app with PostgreSQL database within a Kubernetes cluster
 
 Instantiating new k8s cluster using Kind
 ```bash
