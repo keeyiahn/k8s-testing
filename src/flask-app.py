@@ -1,6 +1,8 @@
 from flask import Flask, render_template, jsonify, request
 import psycopg2
 import requests
+import confluent_kafka
+import json
 
 NUMAFLOW_URL = "https://test-pipeline-in.default.svc:8443/vertices/in"
 #NUMAFLOW_URL = "https://localhost:9001/vertices/in"
@@ -60,8 +62,8 @@ def add_to_db():
         "received_data": data
     }), 200
 
-@app.route("/numaflow_post", methods=["GET"])
-def numaflow_post():
+#@app.route("/numaflow_post", methods=["GET"])
+#def numaflow_post():
     """
     data = request.get_json(silent=True)
     if not data:
@@ -80,8 +82,9 @@ def numaflow_post():
     except Exception as e:
         return jsonify({"error": "Exception sending to Numaflow", "details": str(e)}), 500
     """
-    resp = requests.post(NUMAFLOW_URL, data='hi', verify=False)
-    return resp.text
+    #resp = requests.post(NUMAFLOW_URL, data='hi', verify=False)
+    #return resp.text
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
