@@ -85,6 +85,23 @@ def add_to_db():
     #resp = requests.post(NUMAFLOW_URL, data='hi', verify=False)
     #return resp.text
 
+@app.route('/kafka_test', methods=['POST'])
+def kafka_test():
+    data = request.get_json(silent=True)
+
+    if not data:
+        return jsonify("Invalid JSON payload", 400)
+
+    conf = {
+        "bootstrap.servers": "kafka-controller-0.kafka-controller-headless.default.svc.cluster.local:9092, kafka-controller-1.kafka-controller-headless.default.svc.cluster.local:9092, kafka-controller-2.kafka-controller-headless.default.svc.cluster.local:9092"
+        #"bootstrap.servers": "localhost:9094"
+    }
+ 
+    producer = confluent_kafka.Producer(conf)
+
+    producer.produce('test-topic', key=None, value=json.dumps(data))
+    producer.flush()
+    return jsonify("yay", 200)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
