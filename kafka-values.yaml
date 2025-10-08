@@ -1,25 +1,8 @@
 externalAccess:
-  enabled: true
-  controller:
-    service:
-      type: NodePort
+  enabled: false
 
-defaultInitContainers:
-  autoDiscovery:
-    enabled: true
-
-serviceAccount: 
-  create: true
-
-rbac:
-  create: true
-
-controller:
-  replicaCount: 3
-  automountServiceAccountToken: true
-
-broker:
-  automountServiceAccountToken: true
+# controller:
+#   replicaCount: 1
 
 listeners:
   client:
@@ -30,3 +13,7 @@ listeners:
     protocol: PLAINTEXT
   external:
     protocol: PLAINTEXT
+image:
+  registry: docker.io
+  repository: bitnamilegacy/kafka
+  tag: 4.0.0-debian-12-r10
