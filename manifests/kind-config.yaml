@@ -3,5 +3,10 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
   - role: control-plane
     extraPortMappings:
-      - containerPort: 30080   # inside Kind node
-        hostPort: 30080        # mapped to host
+      - containerPort: 32327
+        hostPort: 32327
+        protocol: TCP
+  - role: worker
+  - role: worker
+  - role: worker
+
