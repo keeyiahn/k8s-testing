@@ -1,27 +1,34 @@
 # (Not Updated) Deployment of Flask app with PostgreSQL database within a Kubernetes cluster
 
 (Yet to add)
-- Deployment of Numaflow pipeline
 - Deployment of Kafka brokers
 - Deployment of consumer scripts
-
 #
-
-Installation of Numaflow on local cluster
-```bash
-kubectl create ns numaflow-system
-kubectl apply -n numaflow-system -f https://raw.githubusercontent.com/numaproj/numaflow/main/config/install.yaml
-kubectl apply -f https://raw.githubusercontent.com/numaproj/numaflow/main/examples/0-isbsvc-jetstream.yaml
-```
 
 Instantiating new k8s cluster using Kind
 ```bash
 kind create cluster --name my-cluster --config manifests/kind-config.yaml
 kind load docker-image keeyiahn/flask-app:latest --name my-cluster 
 ```
-Applying manifest file to create Numaflow pipeline
+
+Installation of Numaflow on local cluster
 ```bash
-kubectl apply -f manifests/test-pipeline.yaml
+kubectl create ns numaflow-system
+
+# Using v1.4.2 release for stability
+kubectl apply -n numaflow-system -f https://github.com/numaproj/numaflow/releases/download/v1.4.2/install.yaml
+
+# Using custom interstep buffer service resource to scale down replicas; refer to numaflow docs for default installation
+kubectl apply -f manifests/numaflow/custom-isbsvc.yaml
+```
+
+Applying manifest files to create Numaflow pipeline
+```bash
+# Deploying ConfigMaps for Kafka source/sink
+kubectl apply -f manifests/numaflow/kafka-in-config.yaml
+kubectl apply -f manifests/numaflow/kafka-out-config.yaml
+
+kubectl apply -f manifests/numaflow/test-pipeline.yaml
 ```
 
 Applying manifest files for Flask app deployment, NodePort service to expose Flask app to external access
