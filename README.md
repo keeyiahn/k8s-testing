@@ -1,5 +1,10 @@
 # (Not Updated) Deployment of Flask app with PostgreSQL database within a Kubernetes cluster
 
+(Yet to add)
+- Deployment of Numaflow pipeline
+- Deployment of Kafka brokers
+- Deployment of consumer scripts 
+
 Installation of Numaflow on local cluster
 ```bash
 kubectl create ns numaflow-system
@@ -19,16 +24,16 @@ kubectl apply -f manifests/test-pipeline.yaml
 
 Applying manifest files for Flask app deployment, NodePort service to expose Flask app to external access
 ```bash
-kubectl apply -f manifests/flask-app-deployment.yaml
-kubectl apply -f manifests/flask-app-service.yaml
+kubectl apply -f manifests/flask/flask-app-deployment.yaml
+kubectl apply -f manifests/flaskflask-app-service.yaml
 ```
 
 Applying manifest files to deploy PostgreSQL database; PVC for persistent data storage, Deployment to run PostgreSQL server, Cluster-IP service for intra-cluster communication between PostgreSQL server & Flask app 
 ```bash
-kubectl apply -f manifests/postgres-secret.yaml
-kubectl apply -f manifests/postgres-pvc.yaml
-kubectl apply -f manifests/postgres-deployment.yaml
-kubectl apply -f manifests/postgres-service.yaml
+kubectl apply -f manifests/postgres-db/postgres-secret.yaml
+kubectl apply -f manifests/postgres-db/postgres-pvc.yaml
+kubectl apply -f manifest/postgres-dbs/postgres-deployment.yaml
+kubectl apply -f manifests/postgres-db/postgres-service.yaml
 ```
 Default credentials:
 ```
