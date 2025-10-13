@@ -1,4 +1,4 @@
-# Deployment of Flask app with PostgreSQL database within a Kubernetes cluster
+# (Not Updated) Deployment of Flask app with PostgreSQL database within a Kubernetes cluster
 
 Installation of Numaflow on local cluster
 ```bash
