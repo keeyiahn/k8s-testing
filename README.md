@@ -8,7 +8,6 @@
 Instantiating new k8s cluster using Kind
 ```bash
 kind create cluster --name my-cluster --config manifests/kind-config.yaml
-kind load docker-image keeyiahn/flask-app:latest --name my-cluster 
 ```
 
 Installation of Numaflow on local cluster
