@@ -9,5 +9,5 @@ spec:
     - protocol: TCP
       port: 80         # Cluster-internal port
       targetPort: 5000 # Container port
-      nodePort: 30080  # External port for NodePort
+      nodePort: 32327  # External port for NodePort
   type: NodePort
