@@ -1,0 +1,41 @@
+externalAccess:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        - 30001
+        - 30002
+        - 30003
+
+defaultInitContainers:
+  autoDiscovery:
+    enabled: true
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/kubectl
+      tag: 1.33.4-debian-12-r0
+      digest: ""
+
+controller:
+  automountServiceAccountToken: true
+
+broker:
+  automountServiceAccountToken: true
+
+rbac:
+  create: true
+
+listeners:
+  client:
+    protocol: PLAINTEXT
+  controller:
+    protocol: PLAINTEXT
+  interbroker:
+    protocol: PLAINTEXT
+  external:
+    protocol: PLAINTEXT
+image:
+  registry: docker.io
+  repository: bitnamilegacy/kafka
+  tag: 4.0.0-debian-12-r10
