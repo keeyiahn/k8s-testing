@@ -99,7 +99,7 @@ def kafka_test():
  
     producer = confluent_kafka.Producer(conf)
 
-    producer.produce('test-topic', key=None, value=json.dumps(data))
+    producer.produce('users-raw', key=None, value=json.dumps(data))
     producer.flush()
     return jsonify("yay", 200)
 
