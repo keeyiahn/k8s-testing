@@ -3,7 +3,9 @@
 (Yet to add)
 - Deployment of Numaflow pipeline
 - Deployment of Kafka brokers
-- Deployment of consumer scripts 
+- Deployment of consumer scripts
+
+#
 
 Installation of Numaflow on local cluster
 ```bash
